@@ -1,0 +1,16 @@
+Requirements for running app
+ - Python 3.7.4
+ - Flask
+
+Folder Structure (as of 5/18/20)
+├── Webserver
+│   ├── __init__.py
+│   ├── admin_views.py
+│   ├── templates
+│   │   ├── index.html
+│   └── views.py
+├── requirements.txt
+└── app.py
+
+Running Flask
+ - In CMD, type flask run and go to ip adddress in browser
