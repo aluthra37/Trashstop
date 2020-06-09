@@ -1,3 +1,4 @@
+#image recognition and processing
 from keras.preprocessing import image
 from keras.models import load_model
 import numpy as np
@@ -10,12 +11,15 @@ import random,os,glob
 import matplotlib.pyplot as plt
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
+#database libraries
+import mysql.connector
 
-#img_path = './IMG_2378.jpg'
+mydb = mysql.connector.connect(host="localhost", user="root", passwd="trashstopdev", database="test")
+mycursor = mydb.cursor()
 
-img_path = './IMG_2377.jpg'
+img_path = "./classification/Garbage classification/Garbage classification/glass/glass19.jpg"
 
-img=mpimg.imread('./IMG_2377.jpg')
+img=mpimg.imread(img_path)
 imgplot = plt.imshow(img)
 plt.show()
 
@@ -46,6 +50,8 @@ elif predicted_class == 4:
 else:
 	item = "Landfill"
 
-
 print("Classified:", item)
 
+query = "INSERT INTO test (time_stamp, classification, id) VALUES (CURRENT_TIMESTAMP, '%s', '5');" % (item)
+mycursor.execute(query)
+mydb.commit()
